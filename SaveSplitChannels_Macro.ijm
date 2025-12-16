@@ -1,7 +1,20 @@
 // run("8-bit");
 // run("Split Channels");
+//setOption("DialogTitle", "Choose input Directory");
+//dir = getDirectory("");
+
 dir = getDirectory("Choose input Directory");
+parentDir = File.getParent(dir);
+print("Parent Dir", parentDir);
+sourceDir = parentDir + dir
+print("source Dir", dir);
+
 outputDir = getDirectory("Choose output Directory");
+//destinationDir = File.getParent(outputDir) + outputDir;
+//print("destination Dir", destinationDir);
+
+//setOption("DialogTitle", "Choose output Directory");
+//outputDir = getDirectory("");
 files = getFileList(dir);
 
 debugVal = true;
@@ -9,13 +22,15 @@ debugVal = true;
 
 //files.length
 for (i =0; i<files.length; i++) {
-	imageFile = files[i];
+	imageFile = dir + files[i];
 	imageName = File.getName(imageFile);
 	
 	if (endsWith(imageFile, ".lsm")){
 	
 		print("Processing", imageFile);
+	    print("Saving to", outputDir);
 		processImage(imageFile, outputDir);
+		print("DONE WITH", imageFile);
 
 	}
 }
